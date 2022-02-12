@@ -2,7 +2,7 @@ import React from "react";
 import env from "react-dotenv";
 
 
-const redirectUrl = "http://localhost:3000/redirect"
+const redirectUrl = "https://oelze-strava-test.herokuapp.com/redirect"
 
 const handleLogin = () => {
     window.location = `https://www.strava.com/oauth/authorize?client_id=77648&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
