@@ -1,11 +1,9 @@
 import React from "react";
-import env from "react-dotenv";
 
-
-const redirectUrl = "http://localhost:3000/redirect"
+const { REACT_APP_STRAVA_CLIENTID, REACT_APP_REDIRECT_URL } = process.env;
 
 const handleLogin = () => {
-    window.location = `https://www.strava.com/oauth/authorize?client_id=77648&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
+    window.location = `https://www.strava.com/oauth/authorize?client_id=${REACT_APP_STRAVA_CLIENTID}&response_type=code&redirect_uri=${REACT_APP_REDIRECT_URL}/exchange_token&approval_prompt=force&scope=read`;
 };
 
 const Home = () => {
