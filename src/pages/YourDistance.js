@@ -5,6 +5,22 @@ import ListGroup from "react-bootstrap/ListGroup";
 const YourDistance = ({ user, returnTokens }) => {
   //console.log(Object.entries(user.data));
 
+  let arr = Object.entries(user.data);
+  var activityMap = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let distance = (arr[i][1].distance * 0.000621371).toFixed(2);
+    let activityName = arr[i][0];
+    activityMap[activityName] = distance;
+  }
+
+  console.log(activityMap);
+  const distances = Object.values(activityMap);
+
+  console.log(distances);
+  const names = Object.entries(activityMap);
+  console.log(names[5][0] + ": " + names[5][1]);
+
   // sets table from Strava JSON Data
   const userDataList = [
     user.data.all_run_totals.distance,
@@ -15,10 +31,13 @@ const YourDistance = ({ user, returnTokens }) => {
   // const sportList = ["run", "rode", "swam"];
 
   // Creates Key-Object Mapping for React Component + converts Meters to Miles
-  const distanceObject = userDataList.map((distance, i) => ({
+  const distanceObject = names.map((a, b, i) => ({
     id: i,
-    title: (distance * 0.000621371).toFixed(2),
+    title: (a * 0.000621371).toFixed(2),
+    sport: b,
   }));
+
+  console.log(distanceObject);
 
   //Validators
   //console.log(userDataList);
@@ -33,9 +52,9 @@ const YourDistance = ({ user, returnTokens }) => {
       </h1>
       <div className="card align-items-center" style={{ textAlign: `center` }}>
         <ListGroup>
-          {distanceObject.map((distances) => (
+          {names.distanceObject((distances) => (
             <ListGroup.Item key={distances.id}>
-              {distances.title} miles you've
+              {distances.title} miles you've {distances.sport}
             </ListGroup.Item>
           ))}
         </ListGroup>
