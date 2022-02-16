@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+import { Button } from "@mantine/core";
 
 const { REACT_APP_STRAVA_CLIENTID, REACT_APP_REDIRECT_URL } = process.env;
 
@@ -12,11 +12,9 @@ const Home = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Home</h1>
-      <div className="d-grid gap-2">
-        <Button variant="danger" size="lg" onClick={handleLogin}>
-          Connect with Strava
-        </Button>
-      </div>
+      <Button color="orange" radius="xl" size="lg" onClick={handleLogin}>
+        Connect with Strava
+      </Button>
     </div>
   );
 };
