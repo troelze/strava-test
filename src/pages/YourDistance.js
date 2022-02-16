@@ -6,15 +6,17 @@ import { Timeline } from "@mantine/core";
 
 const YourDistance = ({ user, returnTokens }) => {
   let arr = Object.entries(user.data);
-  var activityMap = {};
+  var activities = [];
 
   for (let i = 0; i < arr.length; i++) {
     let distance = (arr[i][1].distance * 0.000621371).toFixed(2);
     let activityName = arr[i][0];
-    activityMap[activityName] = distance;
+    let item = {
+      name: activityName,
+      distance: distance,
+    };
+    activities.push(item);
   }
-
-  console.log(activityMap);
 
   return (
     <>
@@ -30,18 +32,11 @@ const YourDistance = ({ user, returnTokens }) => {
           lineWidth={6}
           bulletSize={24}
         >
-          <Timeline.Item>{activityMap["all_ride_totals"]} Rode</Timeline.Item>
-          <Timeline.Item>{activityMap["all_run_totals"]} Ran</Timeline.Item>
-          <Timeline.Item>{activityMap["all_swim_totals"]} Swam</Timeline.Item>
-          <Timeline.Item>
-            ytd_ride_totals: {activityMap["ytd_ride_totals"]}{" "}
-          </Timeline.Item>
-          <Timeline.Item>
-            ytd_run_totals: {activityMap["ytd_run_totals"]}
-          </Timeline.Item>
-          <Timeline.Item>
-            ytd_swim_totals: {activityMap["ytd_swim_totals"]}{" "}
-          </Timeline.Item>
+          {activities.map((item) => (
+            <Timeline.Item>
+              {item.name}: {item.distance}
+            </Timeline.Item>
+          ))}
         </Timeline>
       </div>
     </>
