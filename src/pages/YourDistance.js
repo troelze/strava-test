@@ -5,15 +5,17 @@ import { Carousel } from "bootstrap";
 
 const YourDistance = ({ user, returnTokens }) => {
   let arr = Object.entries(user.data);
-  var activityMap = {};
+    var activityMap = {};
+    
 
   for (let i = 0; i < arr.length; i++) {
     let distance = (arr[i][1].distance * 0.000621371).toFixed(2);
     let activityName = arr[i][0];
     activityMap[activityName] = distance;
   }
+    
+    console.log(activityMap)
 
-console.log(activityMap)
   return (
     <>
       <h1>
