@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Carousel } from "bootstrap";
+import { Timeline } from "@mantine/core";
 
 const YourDistance = ({ user, returnTokens }) => {
   let arr = Object.entries(user.data);
@@ -23,14 +24,20 @@ const YourDistance = ({ user, returnTokens }) => {
         Hi, {returnTokens.athlete.firstname} - here are your totals for the
         year:
       </h1>
-      <div>
-        <ListGroup>
+      <div style={{ marginRight: 10 }}>
+        <Timeline
+          color="orange"
+          radius="md"
+          active={11}
+          lineWidth={6}
+          bulletSize={24}
+        >
           {activities.map((item) => (
-            <ListGroup.Item>
+            <Timeline.Item>
               {item.name}: {item.distance}
-            </ListGroup.Item>
+            </Timeline.Item>
           ))}
-        </ListGroup>
+        </Timeline>
       </div>
     </>
   );
