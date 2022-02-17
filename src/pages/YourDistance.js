@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import ListGroup from "react-bootstrap/ListGroup";
-import { Carousel } from "bootstrap";
 import { Timeline } from "@mantine/core";
 
 const YourDistance = ({ user, returnTokens }) => {
