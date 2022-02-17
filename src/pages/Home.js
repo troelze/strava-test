@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@mantine/core";
 
 const { REACT_APP_STRAVA_CLIENTID, REACT_APP_REDIRECT_URL } = process.env;
 
@@ -11,10 +10,9 @@ const handleLogin = () => {
 const Home = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Home</h1>
-      <Button color="orange" radius="xl" size="lg" onClick={handleLogin}>
-        Connect with Strava
-      </Button>
+          <h1>Home</h1>
+        <img src="btn_strava_connectwith_orange@2x.png" className="githubIcon" onClick={()=> handleLogin()} />
+
     </div>
   );
 };
