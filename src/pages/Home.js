@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div style={{ textAlign: "center" }}>
           <h1>Home</h1>
-        <img src="btn_strava_connectwith_orange@2x.png" className="githubIcon" onClick={()=> handleLogin()} />
+        <img style={{cursor:'pointer'}} src="btn_strava_connectwith_orange@2x.png" className="githubIcon" alt="strava logo" onClick={()=> handleLogin()} />
 
     </div>
   );
