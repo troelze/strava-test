@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
+import cors from 'cors';
 import routes from './routes/athleteRoutes';
 
 require('dotenv').config();
@@ -18,6 +19,9 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, {
 // bodyparser setup
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json());
+
+// CORS setup
+app.use(cors())
 
 routes(app);
 
