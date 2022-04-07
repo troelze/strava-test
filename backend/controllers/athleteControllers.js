@@ -24,3 +24,34 @@ export const getAllAthletes = (req, res) => {
         res.json(Athlete);
     })
 }
+
+
+export const getAthleteById = (req, res) => {
+
+    Athlete.findById(req.params.id, (err, Athlete) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(Athlete);
+    })
+}
+
+export const updateAthlete = (req, res) => {
+
+    Athlete.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true}, (err, Athlete) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(Athlete);
+    })
+}
+
+export const deleteAthlete = (req, res) => {
+
+    Athlete.remove({ _id: req.params.id }, (err, Athlete) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json({message: "Successfully deleted athlete"});
+    })
+}
