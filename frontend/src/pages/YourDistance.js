@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Timeline } from "@mantine/core";
 
 const YourDistance = ({ user, returnTokens }) => {
@@ -41,11 +40,6 @@ const YourDistance = ({ user, returnTokens }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    returnTokens: state.returnTokens,
-  };
-};
 
-export default connect(mapStateToProps)(YourDistance);
+export default YourDistance;
+

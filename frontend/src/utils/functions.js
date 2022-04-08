@@ -13,7 +13,7 @@ export const getParamValues = (url) => {
         }, {});
 };
 
-export const cleanUpAuthToken = (str) => {
+export const parseAuthToken = (str) => {
     return str.split("&")[1].slice(5);
 };
 

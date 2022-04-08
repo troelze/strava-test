@@ -1,22 +1,11 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import AppRouter from "./router/AppRouter";
-import reducers from "./reducers";
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 
 ReactDOM.render(
-  <Provider
-    store={createStore(
-      reducers,
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}
-  >
-    <Context/>
-  </Provider>,
+    <Context />,
   document.getElementById("root")
 );
 
