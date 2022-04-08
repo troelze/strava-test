@@ -11,6 +11,10 @@ export const AthleteSchema = new Schema({
         type: String, 
         required: true
     },
+    exchangeToken: {
+        type: String, 
+        required: false
+    },
     createdDate: {
         type: Date, 
         default: Date.now

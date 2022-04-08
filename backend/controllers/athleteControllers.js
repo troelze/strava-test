@@ -36,6 +36,7 @@ export const getAthleteById = (req, res) => {
     })
 }
 
+
 export const updateAthlete = (req, res) => {
 
     Athlete.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true}, (err, Athlete) => {

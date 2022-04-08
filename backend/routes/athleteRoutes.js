@@ -8,6 +8,8 @@ const routes = (app) => {
         .get(getAthleteById)
         .put(updateAthlete)
         .delete(deleteAthlete)
+    app.route('/athletes/auth/:token')
+        .get(updateAthleteExchangeToken)
 }
 
 export default routes
