@@ -3,6 +3,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export const AthleteSchema = new Schema({
+    stravaId: {
+        type: String,
+        required: false
+    },
     firstName: {
         type: String, 
         required: true

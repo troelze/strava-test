@@ -8,9 +8,9 @@ const Dashboard = (props) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log(props.location.state.athleteId)
+        // console.log(props.location.state.athleteId)
         let isCancelled = false;
-        if (!isCancelled) fetch(`http://localhost:4000/athletes/${props.location.state.athleteId}`)
+        if (!isCancelled) fetch(`http://localhost:4000/stats/${props.location.state.athleteId}`)
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -39,22 +39,14 @@ const Dashboard = (props) => {
     return (
         <>
             <h1>
-                Hi, {athleteData.firstName} - here are your totals for the
-                year:
+                Hi {props.location.state.firstName}!<br></br>
+                In the last four weeks you've ran..
             </h1>
             <div style={{ marginRight: 10 }}>
-                <Timeline
-                    color="orange"
-                    radius="md"
-                    active={11}
-                    lineWidth={6}
-                    bulletSize={24}
-                >
-                    {athleteData.map((item) => (
-                        <Timeline.Item>
-                            {item.name}
-                        </Timeline.Item>
-                    ))}
+                <Timeline color="orange" radius="md" active={11} lineWidth={6} bulletSize={24}>
+                    {Object.keys(athleteData.recent_run_totals).map((key) => {
+                        return <Timeline.Item>{key}: {athleteData.recent_run_totals[key]}</Timeline.Item>
+                        })}
                 </Timeline>
             </div>
         </>

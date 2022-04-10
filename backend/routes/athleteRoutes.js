@@ -8,6 +8,9 @@ const athleteRoutes = (app) => {
         .get(getAthleteById)
         .put(updateAthlete)
         .delete(deleteAthlete)
+   
+
+       
 
 }
 

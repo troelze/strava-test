@@ -4,6 +4,7 @@ import bodyparser from 'body-parser';
 import cors from 'cors';
 import athleteRoutes from './routes/athleteRoutes';
 import authRoutes from './routes/authRoute';
+import statRoutes from './routes/statRoutes';
 
 require('dotenv').config();
 
@@ -23,8 +24,9 @@ app.use(bodyparser.json());
 
 // CORS setup
 app.use(cors())
-authRoutes(app);
 
+authRoutes(app);
+statRoutes(app);
 athleteRoutes(app);
 
 app.get('/', (req, res) => {

@@ -18,8 +18,8 @@ const StravaRedirect = (props) => {
                 }
                 throw response
             }).then(data => {
-                console.log(data._id)
-                setData(data._id)
+                // console.log(data._id)
+                setData(data)
             }).catch(error => {
                 console.error("error fetching data: ", error);
                 if (!isCancelled) setError(error)
@@ -36,7 +36,7 @@ const StravaRedirect = (props) => {
     if (isLoading) return "Loading....";
     if (error) return <pre> {JSON.stringify(error, null, 2)}</pre>;
 
-    return <Redirect to={{ pathname: '/dashboard', state: { athleteId: data } }} />
+    return <Redirect to={{ pathname: '/dashboard', state: { athleteId: data._id, firstName: data.firstName } }} />
 }
 
 const parseAuthToken = (str) => {

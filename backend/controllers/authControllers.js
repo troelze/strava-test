@@ -40,6 +40,7 @@ export const authenticate = (req, res) => {
 
 const upsertAthlete = (data) => {
     let newAthlete = new Athlete({
+        stravaId: data.athlete.id,
         firstName: data.athlete.firstname,
         lastName: data.athlete.lastname,
         city: data.athlete.city,
