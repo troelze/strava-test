@@ -1,9 +1,9 @@
-import { upsertAuth } from '../controllers/authControllers'
+import { authenticate } from '../controllers/authControllers'
 
-const routes = (app) => {
-
+const authRoutes = (app) => {
+   
     app.route('/auth/:token')
-        .get(upsertAuth)
+        .get(authenticate)
 }
 
-export default routes
+export default authRoutes

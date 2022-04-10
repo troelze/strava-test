@@ -11,9 +11,33 @@ export const AthleteSchema = new Schema({
         type: String, 
         required: true
     },
-    exchangeToken: {
+    city: {
         type: String, 
         required: false
+    },
+    state: {
+        type: String, 
+        required: false
+    },
+    refreshToken: {
+        type: String, 
+        required: false
+    },
+    accessToken: {
+        type: String, 
+        required: false
+    },
+    accessTokenExpiration: {
+        type: String, 
+        required: false
+    },
+    profilePhoto: {
+        type: String, 
+        required: false
+    },
+    lastUpdatedDate: {
+        type: Date, 
+        default: Date.now
     },
     createdDate: {
         type: Date, 

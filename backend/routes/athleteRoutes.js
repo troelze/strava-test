@@ -1,6 +1,6 @@
 import { addNewAthlete, deleteAthlete, getAllAthletes, getAthleteById, updateAthlete } from '../controllers/athleteControllers'
 
-const routes = (app) => {
+const athleteRoutes = (app) => {
     app.route('/athletes')
         .post(addNewAthlete)
         .get(getAllAthletes);
@@ -8,8 +8,7 @@ const routes = (app) => {
         .get(getAthleteById)
         .put(updateAthlete)
         .delete(deleteAthlete)
-    app.route('/athletes/auth/:token')
-        .get(updateAthleteExchangeToken)
+
 }
 
-export default routes
+export default athleteRoutes

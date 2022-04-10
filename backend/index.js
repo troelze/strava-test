@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import cors from 'cors';
-import routes from './routes/athleteRoutes';
+import athleteRoutes from './routes/athleteRoutes';
+import authRoutes from './routes/authRoute';
 
 require('dotenv').config();
 
@@ -22,8 +23,9 @@ app.use(bodyparser.json());
 
 // CORS setup
 app.use(cors())
+authRoutes(app);
 
-routes(app);
+athleteRoutes(app);
 
 app.get('/', (req, res) => {
     res.send('Our app is running');

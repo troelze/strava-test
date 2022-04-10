@@ -27,6 +27,12 @@ export const getAllAthletes = (req, res) => {
 
 
 export const getAthleteById = (req, res) => {
+    console.log(`Getting athlete id: ${req.params.id}`)
+    if (!req.params.id) {
+        console.log("No id! ")
+        res.send("No id provided")
+        return
+    }
 
     Athlete.findById(req.params.id, (err, Athlete) => {
         if (err) {
