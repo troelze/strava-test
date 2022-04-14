@@ -16,43 +16,33 @@ export const getAllStats = (req, res) => {
     })
 }
 
-export const getStats = (req, res) => {
-    console.log(`Getting athlete stats by id: ${req.params.id}`)
-    if (!req.params.id) {
-        console.log("No id! ")
-        res.send("No id provided")
-        return
-    }
+export const getStats = async (req, res) => {
+    let id = req.params.id
+    console.log(`Getting stats for athlete ${id}`)
 
+    try {
 
-    Athlete.findById(req.params.id, (err, Athlete) => {
-        if (err) {
-            res.send(err);
-        }
-        axios.get(`https://www.strava.com/api/v3/athletes/${Athlete.stravaId}/stats`, {
+        let athlete = await Athlete.findById(req.params.id);
+
+        let stats = await axios.get(`https://www.strava.com/api/v3/athletes/${athlete.stravaId}/stats`, {
             headers: {
-                'Authorization': `Bearer ${Athlete.accessToken}`
+                'Authorization': `Bearer ${athlete.accessToken}`
             }
-        })
-            .then((response) => {
-                console.log("got response from strava, updating stats")
-                upsertStats(Athlete._id, response.data)
-                    .then((stats) => {
-                        console.log("got it, sending stats!")
-                        res.send(stats)
-                    }, (error) => {
-                        console.log(error);
-                        res.send(error)
-                    });
-            }, (error) => {
-                console.log(error);
-                res.send(error)
-            });
-    })
+        });
+
+        console.log('Got response from Strava, status: ', stats.status)
+
+        let newStats = await upsertStats(athlete._id, stats.data)
+        res.send(newStats)
+
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
 }
 
 
-const upsertStats = (id, data) => {
+const upsertStats = async (id, data) => {
 
     console.log(`updating stats for athlete : ${id}`)
 
@@ -68,22 +58,18 @@ const upsertStats = (id, data) => {
         },
     });
 
-    console.log(newStats)
-
     var upsertData = newStats.toObject();
     delete upsertData._id;
 
-    console.log("findOne and Update")
-    let result = Stats.findOneAndUpdate({ athleteId: id },
-        upsertData, { new: true, upsert: true }).then((err, Stats) => {
-            if (err) {
-            console.log(err)
-            return err
-        }
-        return Stats
-        })
+    try {
+        let result = await Stats.findOneAndUpdate({ athleteId: id },
+            upsertData, { new: true, upsert: true })
+        
+        return result
+        
+    } catch (err) {
+        console.log(err)
+        return err
+    }
     
-    return result
-
-
 }
